@@ -1,4 +1,3 @@
-
 import arcpy
 import os
 from Node import Node
@@ -36,9 +35,3 @@ with open("Output_points.txt") as f:
         prev_id = node.id
 
         print node.id
-
-
-
-
-
-
