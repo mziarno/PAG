@@ -1,5 +1,7 @@
 import arcpy
 import os
+
+from AStar import Astar
 from Node import Node
 
 arcpy.CheckOutExtension("spatial")
@@ -34,4 +36,6 @@ with open("Output_points.txt") as f:
 
         prev_id = node.id
 
-        print node.id
+        # print node.id
+
+Astar(nodes, "4707577457234388", "474275857249573")
