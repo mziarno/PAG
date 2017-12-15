@@ -5,3 +5,5 @@ class Edge:
         self.id_to = []
         self.id_from = []
         self.id_jezdni = []
+
+        "test"
