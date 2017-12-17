@@ -27,7 +27,8 @@ with open("Output_points.txt") as f:
         pointX = float(list_coord[0])
         pointY = float(list_coord[1])
         node = Node(pointX, pointY )
-        nodes[node.id] = node
+        if node.id not in nodes:
+            nodes[node.id] = node
 
 # przypisywanie sasiadow
         if prev_id != "":
