@@ -14,7 +14,6 @@ def Astar(nodes, start_id, end_id):
         for neighbour in nodes[q].neighbours:
             if neighbour == end_id:
                 print "znalezione"
-                # return parents[]
 
             g = nodes[q].g + distance(nodes[q].x, nodes[q].y, nodes[neighbour].x, nodes[neighbour].y)
             h = distance(nodes[neighbour].x, nodes[neighbour].y, nodes[end_id].x, nodes[end_id].y)
