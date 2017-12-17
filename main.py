@@ -16,6 +16,7 @@ arcpy.env.overwriteOutput = True
 # slownik z wezlami
 nodes = {}
 prev_id = ""
+#zmiana
 
 with open("Output_points.txt") as f:
 
