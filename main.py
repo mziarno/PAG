@@ -1,7 +1,5 @@
 import arcpy
 import os
-
-from AStar import Astar
 from Node import Node
 
 arcpy.CheckOutExtension("spatial")
@@ -34,10 +32,16 @@ with open("Output_points.txt") as f:
         if prev_id != "":
             node.neighbours.append(prev_id)
             nodes[prev_id].neighbours.append(node.id)
-        prev_id = node.id
+            edge = Edge(prev_id, node.id)
+            if edge.id not in edges:
+                edges[edge.id] = edge
+            prev_id = node.id
 
+        # print node.id
 
-path = Astar(nodes, "4731830257283878", "4754340256999086")
+Astar(nodes, edges, "4707577457234388", "474275857249573")
+
+path = Astar(nodes, edges, "4731830257283878", "4754340256999086")
 print path
 
 pathPoints = []
