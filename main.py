@@ -1,6 +1,9 @@
 import arcpy
 import os
+
+from AStar import Astar
 from Node import Node
+from Edge import Edge
 
 arcpy.CheckOutExtension("spatial")
 
@@ -14,7 +17,7 @@ arcpy.env.overwriteOutput = True
 # slownik z wezlami
 nodes = {}
 prev_id = ""
-#zmiana
+edges = {}
 
 with open("Output_points.txt") as f:
 
@@ -26,13 +29,18 @@ with open("Output_points.txt") as f:
         pointX = float(list_coord[0])
         pointY = float(list_coord[1])
         node = Node(pointX, pointY )
-        nodes[node.id] = node
+        if node.id not in nodes:
+            nodes[node.id] = node
 
 # przypisywanie sasiadow
         if prev_id != "":
             node.neighbours.append(prev_id)
             nodes[prev_id].neighbours.append(node.id)
+            edge = Edge(prev_id, node.id)
+            if edge.id not in edges:
+                edges[edge.id] = edge
+            prev_id = node.id
 
-        prev_id = node.id
+        # print node.id
 
-        print node.id
+Astar(nodes, edges, "4707577457234388", "474275857249573")
