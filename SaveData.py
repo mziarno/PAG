@@ -21,7 +21,6 @@ with open("Output_points.txt", "w+") as text_file:
         is_first = True
         prev_node = 0
 
-
         text_file.write("Next polyline\n")
 
     # wczytuje wspolrzedne punktow

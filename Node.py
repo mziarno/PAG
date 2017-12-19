@@ -7,7 +7,7 @@ class Node:
         self.f = 99999999999
         self.g = 0
         self.h = 0
-        self.parent = ""
+        self.parent = 0
 
     def createID(self):
         id = str(self.x) + str(self.y)
