@@ -14,16 +14,16 @@ def Astar(nodes, edges, start_id, end_id):
         #print nodes[start_id].parent
         del nodes_open[q]
         for neighbour_id in nodes[q].neighbours:
-            if neighbour_id == start_id:
+            if neighbour_id == nodes[q].parent:
                 continue
             if neighbour_id == end_id:
                 print "znalezione"
                 nodes[neighbour_id].parent = q
-                # print nodes[start_id].parent
+                #print nodes[start_id].parent
                 while nodes[neighbour_id].parent != 0:
                     path.append(neighbour_id)
                     neighbour_id = nodes[neighbour_id].parent
-                    # print neighbour_id
+                    #print neighbour_id
                 path.append(neighbour_id)
                 return path
             currEdgeID = createEdgeId(nodes[q].id, nodes[neighbour_id].id)
