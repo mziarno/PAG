@@ -54,7 +54,7 @@ from tools import createEdgeId
 def Astar(nodes, edges, start_id, end_id):
     nodes_open = {}
     nodes_close = {}
-    road_class = {"A": 120, "S": 100, "GP": 90, "G": 90, "Z": 60, "L": 50, "D": 30}
+    road_class = {"A": 120, "S": 100, "GP": 90, "G": 90, "Z": 60, "L": 50, "D": 30, "I": 30}
 
     nodes_open[start_id] = nodes[start_id]
 

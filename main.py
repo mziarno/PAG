@@ -35,7 +35,7 @@ with open("Output_points.txt") as f:
             edge = Edge(prev_id, node.id)
             if edge.id not in edges:
                 edges[edge.id] = edge
-            prev_id = node.id
+        prev_id = node.id
 
         # print node.id
 
