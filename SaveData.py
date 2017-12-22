@@ -28,7 +28,7 @@ with open("Output_points.txt", "w+") as text_file:
 
     # wczytuje wspolrzedne punktow
         for point in points:
-            text_file.write(str(point.X) + " " + str(point.Y) + " " + sign + " " + direction + "\n")
+            text_file.write(str(point.X) + " " + str(point.Y) + " " + sign + " " + str(direction) + "\n")
 
 
 
