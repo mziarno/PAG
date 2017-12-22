@@ -1,8 +1,9 @@
 import arcpy
 import os
+
+from AStar import Astar
 from Node import Node
 from Edge import Edge
-from AStar import Astar
 
 arcpy.CheckOutExtension("spatial")
 
@@ -15,8 +16,8 @@ arcpy.env.overwriteOutput = True
 
 # slownik z wezlami
 nodes = {}
-edges = {}
 prev_id = ""
+edges = {}
 
 with open("Output_points.txt") as f:
 
@@ -27,24 +28,27 @@ with open("Output_points.txt") as f:
         list_coord = line.split(" ")
         pointX = float(list_coord[0])
         pointY = float(list_coord[1])
+        road_class = str(list_coord[2])
+        road_class = road_class.replace("\n", "")
         node = Node(pointX, pointY)
         if node.id not in nodes:
             nodes[node.id] = node
 
 # przypisywanie sasiadow
         if prev_id != "":
-            node.neighbours.append(prev_id)
+            #node.neighbours.append(prev_id)
+            nodes[node.id].neighbours.append(prev_id)
             nodes[prev_id].neighbours.append(node.id)
-            edge = Edge(prev_id, node.id)
+            edge = Edge(prev_id, node.id, road_class)
+            #print node.id
             if edge.id not in edges:
                 edges[edge.id] = edge
         prev_id = node.id
 
-        #print node.id
-
+        # print node.id
 
 path = Astar(nodes, edges, "4731830257283878", "4754340256999086")
-print path
+#print path
 
 pathPoints = []
 

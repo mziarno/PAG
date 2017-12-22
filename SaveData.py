@@ -12,22 +12,25 @@ arcpy.env.overwriteOutput = True
 
 # wczytuje warstwe i dodaje do obiektu
 polylines = arcpy.CopyFeatures_management("Dane/miasto/L4_1_BDOT10k__OT_SKDR_L.shp", arcpy.Geometry())
-road_classes = arcpy.SearchCursor("Dane/miasto/L4_1_BDOT10k__OT_SKDR_L.shp", fields="klasaDrogi")
+cursors = arcpy.SearchCursor("Dane/miasto/L4_1_BDOT10k__OT_SKDR_L.shp")
+
+
 
 with open("Output_points.txt", "w+") as text_file:
 
 # przegladamy punkty, z ktorych skladaja sie linie
-    for polyline in polylines:
-        points = polyline.getPart(0)
-        road_class = road_classes.getPart
+    for i, cursor in enumerate(cursors):
+        sign = cursor.getValue("klasaDrogi")
+        points = polylines[i].getPart(0)
         is_first = True
         prev_node = 0
 
         text_file.write("Next polyline\n")
 
+
     # wczytuje wspolrzedne punktow
-        for point in road_classes:
-            text_file.write(str(point.X) + " " + str(point.Y) + " " + str(road_classes"\n")
+        for point in points:
+            text_file.write(str(point.X) + " " + str(point.Y) + " " + sign + "\n")
 
 
 

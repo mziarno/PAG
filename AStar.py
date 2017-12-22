@@ -27,8 +27,7 @@ def Astar(nodes, edges, start_id, end_id):
                 path.append(neighbour_id)
                 return path
             currEdgeID = createEdgeId(nodes[q].id, nodes[neighbour_id].id)
-            #g = nodes[q].g + distance(nodes[q].x, nodes[q].y, nodes[neighbour_id].x, nodes[neighbour_id].y) / edges[currEdgeID].road_class
-            g = nodes[q].g + distance(nodes[q].x, nodes[q].y, nodes[neighbour_id].x, nodes[neighbour_id].y)/30
+            g = nodes[q].g + distance(nodes[q].x, nodes[q].y, nodes[neighbour_id].x, nodes[neighbour_id].y) / edges[currEdgeID].speed_lmt
             h = distance(nodes[neighbour_id].x, nodes[neighbour_id].y, nodes[q].x, nodes[q].y)/30
             f = g + h
             if neighbour_id in nodes_open:
