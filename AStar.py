@@ -26,6 +26,7 @@ def Astar(nodes, edges, start_id, end_id):
                     #print neighbour_id
                 path.append(neighbour_id)
                 return path
+
             currEdgeID = createEdgeId(nodes[q].id, nodes[neighbour_id].id)
             g = nodes[q].g + distance(nodes[q].x, nodes[q].y, nodes[neighbour_id].x, nodes[neighbour_id].y) / edges[currEdgeID].speed_lmt
             h = distance(nodes[neighbour_id].x, nodes[neighbour_id].y, nodes[q].x, nodes[q].y)/30

@@ -30,6 +30,7 @@ with open("Output_points.txt") as f:
         pointY = float(list_coord[1])
         road_class = str(list_coord[2])
         road_class = road_class.replace("\n", "")
+        direct = int(list_coord[3])
         node = Node(pointX, pointY)
         if node.id not in nodes:
             nodes[node.id] = node
@@ -37,10 +38,18 @@ with open("Output_points.txt") as f:
 # przypisywanie sasiadow
         if prev_id != "":
             #node.neighbours.append(prev_id)
-            nodes[node.id].neighbours.append(prev_id)
-            nodes[prev_id].neighbours.append(node.id)
+            if direct == "0":
+                nodes[node.id].neighbours.append(prev_id)
+                nodes[prev_id].neighbours.append(node.id)
+            elif direct == "1":
+                nodes[prev_id].neighbours.append(node.id)
+            elif direct == "2":
+                nodes[node.id].neighbours.append(prev_id)
+            elif direct == "3"
+
             edge = Edge(prev_id, node.id, road_class)
             #print node.id
+
             if edge.id not in edges:
                 edges[edge.id] = edge
         prev_id = node.id

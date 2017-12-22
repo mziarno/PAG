@@ -12,3 +12,4 @@ class Edge:
         speed_lmt = road_classes[road_class]
         return speed_lmt
 
+
