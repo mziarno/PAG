@@ -1,6 +1,8 @@
 import arcpy
 import os
 from Node import Node
+from Edge import Edge
+from AStar import Astar
 
 arcpy.CheckOutExtension("spatial")
 
@@ -13,6 +15,7 @@ arcpy.env.overwriteOutput = True
 
 # slownik z wezlami
 nodes = {}
+edges = {}
 prev_id = ""
 
 with open("Output_points.txt") as f:
@@ -37,9 +40,8 @@ with open("Output_points.txt") as f:
                 edges[edge.id] = edge
         prev_id = node.id
 
-        # print node.id
+        #print node.id
 
-Astar(nodes, edges, "4707577457234388", "474275857249573")
 
 path = Astar(nodes, edges, "4731830257283878", "4754340256999086")
 print path
