@@ -4,6 +4,7 @@ import os
 from AStar import Astar
 from Node import Node
 from Edge import Edge
+from tools import createEdgeId
 
 arcpy.CheckOutExtension("spatial")
 
@@ -56,10 +57,12 @@ with open("Output_points.txt") as f:
 
         # print node.id
 
-edges[4744084557075695].traffic = 40
-edges[4730681257213963].traffic = 120
-edges[4734945757250903].traffic = 200
-edges[4734945757250903].traffic = 2000
+
+
+edges[createEdgeId('4745586457068268', '4745501257068493')].traffic = 230
+# edges["4730681257213963"].traffic = 120
+# edges["4734945757250903"].traffic = 200
+# edges["4734945757250903"].traffic = 2000
 
 path = Astar(nodes, edges, "4731830257283878", "4754340256999086")
 #print path
