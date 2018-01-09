@@ -1,4 +1,4 @@
-from cmath import sqrt
+from tools import findDistance
 from tools import createEdgeId
 
 
@@ -17,7 +17,7 @@ def Astar(nodes, edges, start_id, end_id):
             if neighbour_id == nodes[q].parent:
                 continue
             if neighbour_id == end_id:
-                print "znalezione"
+                #print "znalezione"
                 nodes[neighbour_id].parent = q
                 #print nodes[start_id].parent
                 while nodes[neighbour_id].parent != 0:
@@ -28,8 +28,9 @@ def Astar(nodes, edges, start_id, end_id):
                 return path
 
             currEdgeID = createEdgeId(nodes[q].id, nodes[neighbour_id].id)
-            g = nodes[q].g + distance(nodes[q].x, nodes[q].y, nodes[neighbour_id].x, nodes[neighbour_id].y) / edges[currEdgeID].speed_lmt
-            h = distance(nodes[neighbour_id].x, nodes[neighbour_id].y, nodes[q].x, nodes[q].y)/30
+            curr_distance = findDistance(nodes[q].x, nodes[q].y, nodes[neighbour_id].x, nodes[neighbour_id].y)
+            g = nodes[q].g + curr_distance / edges[currEdgeID].speed_lmt
+            h = findDistance(nodes[neighbour_id].x, nodes[neighbour_id].y, nodes[q].x, nodes[q].y)/(30/3.6)
             f = g + h
             if neighbour_id in nodes_open:
                 if nodes_open[neighbour_id].f < f:
@@ -47,8 +48,6 @@ def Astar(nodes, edges, start_id, end_id):
 
         nodes_close[q] = nodes[q]
 
-def distance(x1, y1, x2, y2):
-    x = x2 - x1
-    y = y2 - y1
-    d = sqrt(x**2 + y**2).real
-    return d
+
+
+

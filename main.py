@@ -57,7 +57,6 @@ with open("Output_points.txt") as f:
         # print node.id
 
 path = Astar(nodes, edges, "4731830257283878", "4754340256999086")
-#print path
 
 pathPoints = []
 
