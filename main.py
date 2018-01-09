@@ -35,7 +35,7 @@ with open("Output_points.txt") as f:
         if node.id not in nodes:
             nodes[node.id] = node
 
-# przypisywanie sasiadow
+# przypisywanie sasiadow z uwzglednieniem kierunkowosci
         if prev_id != "":
             #node.neighbours.append(prev_id)
             if direct == 0:
@@ -57,7 +57,7 @@ with open("Output_points.txt") as f:
         # print node.id
 
 path = Astar(nodes, edges, "4731830257283878", "4754340256999086")
-#print path
+# print path
 
 pathPoints = []
 
