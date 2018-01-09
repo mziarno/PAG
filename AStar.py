@@ -1,11 +1,13 @@
 from tools import findDistance
 from tools import createEdgeId
+from tools import convertVelocity
 
 
 def Astar(nodes, edges, start_id, end_id):
     nodes_open = {}
     nodes_close = {}
     path = []
+
 
     nodes_open[start_id] = nodes[start_id]
     while len(nodes_open) != 0:
@@ -19,12 +21,26 @@ def Astar(nodes, edges, start_id, end_id):
             if neighbour_id == end_id:
                 #print "znalezione"
                 nodes[neighbour_id].parent = q
-                #print nodes[start_id].parent
+                path.append(neighbour_id)
+                neighbour_id = nodes[neighbour_id].parent
+
+                time = 0
+                distan = 0
+
                 while nodes[neighbour_id].parent != 0:
                     path.append(neighbour_id)
                     neighbour_id = nodes[neighbour_id].parent
+
+                    edge_id = createEdgeId(path[-1], path[-2])
+                    distan += edges[edge_id].dist
+                    time += edges[edge_id].time
+
                     #print neighbour_id
+
                 path.append(neighbour_id)
+                print distan
+                print (time/3600)*60
+
                 return path
 
             currEdgeID = createEdgeId(nodes[q].id, nodes[neighbour_id].id)

@@ -10,6 +10,7 @@ class Edge:
         self.id = createEdgeId(s_node, e_node)
         self.dist = self.distance(nodes)
         self.traffic = 0
+        self.time = self.timeOfDist()
 
     def checkLimit(self, road_class):
         road_classes = {"A": 120, "S": 100, "GP": 90, "G": 90, "Z": 60, "L": 50, "D": 30, "I": 30}
@@ -17,7 +18,7 @@ class Edge:
         return speed_lmt
 
     def timeOfDist(self):
-        time = self.speed_lmt*self.dist
+        time = self.dist/self.speed_lmt
         return time
 
     def distance(self, nodes):
@@ -27,7 +28,6 @@ class Edge:
         y2 = nodes[self.e].y
 
         return findDistance(x1, y1, x2, y2)
-
 
 
 
