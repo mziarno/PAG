@@ -29,7 +29,7 @@ def Astar(nodes, edges, start_id, end_id):
 
             currEdgeID = createEdgeId(nodes[q].id, nodes[neighbour_id].id)
             currDist = findDistance(nodes[q].x, nodes[q].y, nodes[neighbour_id].x, nodes[neighbour_id].y)
-            g = nodes[q].g + currDist / edges[currEdgeID].speed_lmt
+            g = nodes[q].g + currDist / edges[currEdgeID].speed_lmt + edges[currEdgeID].traffic
             h = findDistance(nodes[neighbour_id].x, nodes[neighbour_id].y, nodes[q].x, nodes[q].y)/(30/3.6)
             f = g + h
             if neighbour_id in nodes_open:
