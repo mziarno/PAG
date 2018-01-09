@@ -47,7 +47,7 @@ with open("Output_points.txt") as f:
                 nodes[node.id].neighbours.append(prev_id)
             # elif direct == 3
 
-            edge = Edge(prev_id, node.id, road_class)
+            edge = Edge(prev_id, node.id, road_class, nodes )
             #print node.id
 
             if edge.id not in edges:
