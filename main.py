@@ -12,7 +12,6 @@ arcpy.CheckOutExtension("spatial")
 path = os.path.dirname(os.path.abspath(__file__))
 arcpy.env.workspace = path
 
-
 arcpy.env.overwriteOutput = True
 
 # slownik z wezlami
@@ -58,13 +57,14 @@ with open("Output_points.txt") as f:
         # print node.id
 
 
+# korki
 
-edges[createEdgeId('4745586457068268', '4745501257068493')].traffic = 230
-# edges["4730681257213963"].traffic = 120
-# edges["4734945757250903"].traffic = 200
-# edges["4734945757250903"].traffic = 2000
+edges[createEdgeId('4748663157196187', '475007657208723')].traffic = 230
+edges[createEdgeId('4750264757210177', '4751250357218008')].traffic = 230
+edges[createEdgeId('4752339257226212', '4752929857230758')].traffic = 230
 
-path = Astar(nodes, edges, "4731830257283878", "4754340256999086")
+
+path = Astar(nodes, edges, "480564555748327", "4754340256999086")
 #print path
 
 pathPoints = []
@@ -73,8 +73,20 @@ for pointId in path:
     node = nodes[pointId]
     pathPoints.append(arcpy.Point(node.x, node.y))
 
-result = arcpy.Polyline(arcpy.Array(pathPoints))
+    startPoint = pathPoints[-1]
+    endPoint = pathPoints[0]
 
-arcpy.CopyFeatures_management(result, "result.shp")
+
+result = arcpy.Polyline(arcpy.Array(pathPoints))
+result2 = arcpy.PointGeometry(startPoint)
+result3 = arcpy.PointGeometry(endPoint)
+
+arcpy.CopyFeatures_management(result, "TRASA.shp")
+arcpy.CopyFeatures_management(result2, "START.shp")
+arcpy.CopyFeatures_management(result3, "END.shp")
+
+
+
+
 
 
