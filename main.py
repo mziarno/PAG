@@ -36,8 +36,8 @@ with open("Output_points.txt") as f:
             nodes[node.id] = node
 
 # przypisywanie sasiadow
+
         if prev_id != "":
-            #node.neighbours.append(prev_id)
             if direct == 0:
                 nodes[node.id].neighbours.append(prev_id)
                 nodes[prev_id].neighbours.append(node.id)
@@ -48,14 +48,10 @@ with open("Output_points.txt") as f:
             # elif direct == 3
 
             edge = Edge(prev_id, node.id, road_class, nodes )
-            #print node.id
 
             if edge.id not in edges:
                 edges[edge.id] = edge
         prev_id = node.id
-
-        # print node.id
-
 
 # korki
 
@@ -65,7 +61,6 @@ edges[createEdgeId('4752339257226212', '4752929857230758')].traffic = 230
 
 
 path = Astar(nodes, edges, "480564555748327", "4754340256999086")
-#print path
 
 pathPoints = []
 
